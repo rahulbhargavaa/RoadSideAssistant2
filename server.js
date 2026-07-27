@@ -31,13 +31,12 @@ async function createDefaultAdmin() {
 
     const existingAdmin = await User.findOne({
       email: adminEmail.toLowerCase(),
-      role: "admin",
     });
 
     if (!existingAdmin) {
-      const hashedPassword = await bcrypt.hash(adminPassword, 10);
+    const hashedPassword = await bcrypt.hash(adminPassword, 10);
 
-      await User.create({
+    await User.create({
         name: "System Admin",
         email: adminEmail.toLowerCase(),
         mobile: "9999999999",
@@ -46,15 +45,18 @@ async function createDefaultAdmin() {
         vehicleType: "Car",
         vehicleNumber: "ADMIN",
         role: "admin",
-      });
+    });
 
-      console.log("✅ Default Admin Created");
-    } else {
-      console.log("✅ Admin Already Exists");
-    }
-  } catch (err) {
-    console.error("Admin Creation Error:", err);
-  }
+    console.log("✅ Default Admin Created");
+
+} else {
+
+    existingAdmin.role = "admin";
+    existingAdmin.password = await bcrypt.hash(adminPassword, 10);
+
+    await existingAdmin.save();
+
+    console.log("✅ Existing User Promoted To Admin");
 }
 
 createDefaultAdmin();
