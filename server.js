@@ -61,6 +61,9 @@ async function createDefaultAdmin() {
 } catch (err) {
   console.error("Admin Creation Error:", err);
 }
+
+} // <-- createDefaultAdmin function yahan close hoga
+
 createDefaultAdmin();
 
 // View engine setup
