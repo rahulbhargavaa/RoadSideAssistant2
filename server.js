@@ -18,11 +18,46 @@ const adminRoutes = require('./routes/adminRoutes');
 const serviceRoutes = require('./routes/serviceRoutes');
 const User = require('./models/User');
 const ServiceRequest = require('./models/ServiceRequest');
+const bcrypt = require('bcryptjs');
 
 const app = express();
 
 // Connect to MongoDB
 connectDB();
+async function createDefaultAdmin() {
+  try {
+    const adminEmail = process.env.ADMIN_EMAIL || "admin@gmail.com";
+    const adminPassword = process.env.ADMIN_PASSWORD || "Admin@123";
+
+    const existingAdmin = await User.findOne({
+      email: adminEmail.toLowerCase(),
+      role: "admin",
+    });
+
+    if (!existingAdmin) {
+      const hashedPassword = await bcrypt.hash(adminPassword, 10);
+
+      await User.create({
+        name: "System Admin",
+        email: adminEmail.toLowerCase(),
+        mobile: "9999999999",
+        password: hashedPassword,
+        address: "Head Office",
+        vehicleType: "Car",
+        vehicleNumber: "ADMIN",
+        role: "admin",
+      });
+
+      console.log("✅ Default Admin Created");
+    } else {
+      console.log("✅ Admin Already Exists");
+    }
+  } catch (err) {
+    console.error("Admin Creation Error:", err);
+  }
+}
+
+createDefaultAdmin();
 
 // View engine setup
 app.set('view engine', 'ejs');
