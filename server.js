@@ -58,7 +58,9 @@ async function createDefaultAdmin() {
 
     console.log("✅ Existing User Promoted To Admin");
 }
-
+} catch (err) {
+  console.error("Admin Creation Error:", err);
+}
 createDefaultAdmin();
 
 // View engine setup
