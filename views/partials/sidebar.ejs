@@ -1,0 +1,24 @@
+<!-- views/partials/sidebar.ejs -->
+<!-- expects a local variable "active" to highlight the current menu item, and "panel" = 'user' or 'admin' -->
+<div class="dashboard-sidebar">
+  <div class="sidebar-user">
+    <img src="<%= user.profileImage %>" alt="avatar" class="sidebar-avatar">
+    <h6 class="mb-0 mt-2"><%= user.name %></h6>
+    <span class="badge bg-light text-dark text-capitalize"><%= user.role %></span>
+  </div>
+  <ul class="sidebar-menu">
+    <% if (panel === 'admin') { %>
+      <li><a href="/admin/dashboard" class="<%= active === 'dashboard' ? 'active' : '' %>"><i class="fa-solid fa-gauge"></i> Dashboard</a></li>
+      <li><a href="/admin/users" class="<%= active === 'users' ? 'active' : '' %>"><i class="fa-solid fa-users"></i> Manage Users</a></li>
+      <li><a href="/admin/requests" class="<%= active === 'requests' ? 'active' : '' %>"><i class="fa-solid fa-clipboard-list"></i> Manage Requests</a></li>
+      <li><a href="/admin/analytics" class="<%= active === 'analytics' ? 'active' : '' %>"><i class="fa-solid fa-chart-pie"></i> Analytics</a></li>
+    <% } else { %>
+      <li><a href="/user/dashboard" class="<%= active === 'dashboard' ? 'active' : '' %>"><i class="fa-solid fa-gauge"></i> Dashboard</a></li>
+      <li><a href="/user/request-service" class="<%= active === 'request' ? 'active' : '' %>"><i class="fa-solid fa-triangle-exclamation"></i> Request Service</a></li>
+      <li><a href="/user/track-request" class="<%= active === 'track' ? 'active' : '' %>"><i class="fa-solid fa-location-crosshairs"></i> Track Request</a></li>
+      <li><a href="/user/history" class="<%= active === 'history' ? 'active' : '' %>"><i class="fa-solid fa-clock-rotate-left"></i> History</a></li>
+      <li><a href="/user/profile" class="<%= active === 'profile' ? 'active' : '' %>"><i class="fa-solid fa-user"></i> Profile</a></li>
+    <% } %>
+    <li><a href="/logout" class="text-danger"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+  </ul>
+</div>

@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('partials/head') %>
+</head>
+<body>
+  <%- include('partials/navbar') %>
+
+  <!-- HERO SECTION -->
+  <section class="hero-section">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6">
+          <span class="badge hero-badge mb-3"><i class="fa-solid fa-bolt me-1"></i> 24/7 Emergency Support</span>
+          <h1 class="hero-title">Stuck On The Road? <span>We've Got You Covered.</span></h1>
+          <p class="hero-subtitle">Fast, reliable and affordable roadside assistance for flat tyres, battery failures, towing, fuel delivery and more. Help is just one click away.</p>
+          <div class="d-flex flex-wrap gap-3 mt-4">
+            <% if (typeof user !== 'undefined' && user) { %>
+              <a href="/user/request-service" class="btn btn-emergency btn-lg"><i class="fa-solid fa-triangle-exclamation me-2"></i>Request Help Now</a>
+            <% } else { %>
+              <a href="/register" class="btn btn-emergency btn-lg"><i class="fa-solid fa-triangle-exclamation me-2"></i>Request Help Now</a>
+            <% } %>
+            <a href="#how-it-works" class="btn btn-outline-light btn-lg">How It Works</a>
+          </div>
+        </div>
+        <div class="col-lg-6 text-center mt-5 mt-lg-0">
+          <i class="fa-solid fa-truck-medical hero-icon"></i>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="stats-section">
+    <div class="container">
+      <div class="row text-center g-4">
+        <div class="col-6 col-lg-3">
+          <h2 class="stat-number">15K+</h2>
+          <p class="stat-label">Happy Customers</p>
+        </div>
+        <div class="col-6 col-lg-3">
+          <h2 class="stat-number">200+</h2>
+          <p class="stat-label">Expert Mechanics</p>
+        </div>
+        <div class="col-6 col-lg-3">
+          <h2 class="stat-number">50+</h2>
+          <p class="stat-label">Cities Covered</p>
+        </div>
+        <div class="col-6 col-lg-3">
+          <h2 class="stat-number">24/7</h2>
+          <p class="stat-label">Availability</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services-section py-5" id="services">
+    <div class="container">
+      <div class="text-center mb-5">
+        <span class="section-tag">Our Services</span>
+        <h2 class="section-title">Everything Your Vehicle Might Need</h2>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-3">
+          <div class="service-card">
+            <i class="fa-solid fa-circle-dot"></i>
+            <h5>Flat Tyre</h5>
+            <p>Quick tyre change or repair at your exact location.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="service-card">
+            <i class="fa-solid fa-car-battery"></i>
+            <h5>Battery Jump Start</h5>
+            <p>Dead battery? We will get you charged and back on the road.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="service-card">
+            <i class="fa-solid fa-gas-pump"></i>
+            <h5>Fuel Delivery</h5>
+            <p>Ran out of fuel? We deliver petrol/diesel directly to you.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="service-card">
+            <i class="fa-solid fa-gears"></i>
+            <h5>Engine Problem</h5>
+            <p>On-spot diagnostics and repair by certified mechanics.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="service-card">
+            <i class="fa-solid fa-truck-pickup"></i>
+            <h5>Towing</h5>
+            <p>Safe towing to the nearest garage or your preferred location.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="service-card">
+            <i class="fa-solid fa-car-burst"></i>
+            <h5>Accident Help</h5>
+            <p>Immediate support and coordination during accidents.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="service-card">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            <h5>Brake Issue</h5>
+            <p>Expert brake inspection and emergency repair service.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="service-card">
+            <i class="fa-solid fa-lock"></i>
+            <h5>Vehicle Lockout</h5>
+            <p>Locked your keys inside? We will help you get back in.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="how-it-works-section py-5" id="how-it-works">
+    <div class="container">
+      <div class="text-center mb-5">
+        <span class="section-tag">Simple Process</span>
+        <h2 class="section-title">How It Works</h2>
+      </div>
+      <div class="row g-4 text-center">
+        <div class="col-md-3">
+          <div class="step-card">
+            <div class="step-number">1</div>
+            <h5>Create Account</h5>
+            <p>Register in seconds with your basic details.</p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="step-card">
+            <div class="step-number">2</div>
+            <h5>Request Service</h5>
+            <p>Tell us your issue, location and vehicle details.</p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="step-card">
+            <div class="step-number">3</div>
+            <h5>Get Assigned</h5>
+            <p>A nearby mechanic is assigned to assist you.</p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="step-card">
+            <div class="step-number">4</div>
+            <h5>Back On Road</h5>
+            <p>Track live status until your issue is resolved.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY CHOOSE US -->
+  <section class="why-us-section py-5">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-6">
+          <span class="section-tag">Why Choose Us</span>
+          <h2 class="section-title">Reliable Help, Whenever You Need It</h2>
+          <ul class="why-us-list">
+            <li><i class="fa-solid fa-circle-check"></i> 24/7 Emergency Support across 50+ cities</li>
+            <li><i class="fa-solid fa-circle-check"></i> Verified and background-checked mechanics</li>
+            <li><i class="fa-solid fa-circle-check"></i> Transparent and affordable pricing</li>
+            <li><i class="fa-solid fa-circle-check"></i> Real-time tracking of your request</li>
+            <li><i class="fa-solid fa-circle-check"></i> Simple, easy to use dashboard</li>
+          </ul>
+        </div>
+        <div class="col-lg-6 text-center">
+          <i class="fa-solid fa-shield-halved why-us-icon"></i>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials-section py-5">
+    <div class="container">
+      <div class="text-center mb-5">
+        <span class="section-tag">Testimonials</span>
+        <h2 class="section-title">What Our Customers Say</h2>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="testimonial-card">
+            <p>"My car broke down at midnight and RoadGuard had a mechanic there in 20 minutes. Amazing service!"</p>
+            <h6>- Rahul Sharma</h6>
+            <span>Car Owner, Jaipur</span>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="testimonial-card">
+            <p>"Very easy to use app, I could track my request in real-time. Highly recommend to everyone."</p>
+            <h6>- Priya Verma</h6>
+            <span>Bike Owner, Jodhpur</span>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="testimonial-card">
+            <p>"Affordable pricing and professional mechanics. RoadGuard saved my day during a long trip."</p>
+            <h6>- Amit Patel</h6>
+            <span>Truck Owner, Ahmedabad</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq-section py-5">
+    <div class="container">
+      <div class="text-center mb-5">
+        <span class="section-tag">FAQ</span>
+        <h2 class="section-title">Frequently Asked Questions</h2>
+      </div>
+      <div class="accordion" id="faqAccordion">
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+              How quickly can I get help?
+            </button>
+          </h2>
+          <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">On average, our mechanics reach you within 20-30 minutes of request approval, depending on your location.</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+              Is roadside assistance available 24/7?
+            </button>
+          </h2>
+          <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">Yes! Our support and mechanic network is available all day, every day, including holidays.</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+              How do I track my request?
+            </button>
+          </h2>
+          <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">Once logged in, you can visit the "Track Request" page from your dashboard to see live status updates.</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+              Can I cancel a request?
+            </button>
+          </h2>
+          <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">Yes, you can cancel any request that has not yet been completed, directly from the Track Request page.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EMERGENCY CTA -->
+  <section class="emergency-cta">
+    <div class="container text-center">
+      <h2>Need Help Right Now?</h2>
+      <p>Our team is ready to assist you 24/7. Don't wait, request help immediately.</p>
+      <% if (typeof user !== 'undefined' && user) { %>
+        <a href="/user/request-service" class="btn btn-light btn-lg"><i class="fa-solid fa-phone me-2"></i>Request Emergency Help</a>
+      <% } else { %>
+        <a href="/register" class="btn btn-light btn-lg"><i class="fa-solid fa-phone me-2"></i>Request Emergency Help</a>
+      <% } %>
+    </div>
+  </section>
+
+  <%- include('partials/footer') %>
+  <%- include('partials/scripts') %>
+</body>
+</html>

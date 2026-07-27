@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('partials/head') %>
+</head>
+<body>
+  <%- include('partials/navbar') %>
+
+  <section class="dashboard-section">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-3">
+          <%- include('partials/sidebar', { panel: 'user', active: 'track' }) %>
+        </div>
+        <div class="col-lg-9">
+          <div class="dashboard-content">
+            <h3 class="mb-4"><i class="fa-solid fa-location-crosshairs me-2"></i>Track Your Requests</h3>
+
+            <div class="dashboard-card">
+              <% if (requests.length === 0) { %>
+                <div class="text-center py-5">
+                  <i class="fa-solid fa-inbox empty-icon"></i>
+                  <p class="mt-3">You haven't made any service requests yet.</p>
+                  <a href="/user/request-service" class="btn btn-emergency">Request Service Now</a>
+                </div>
+              <% } else { %>
+                <div class="table-responsive">
+                  <table class="table align-middle table-hover">
+                    <thead>
+                      <tr>
+                        <th>Service</th>
+                        <th>Vehicle</th>
+                        <th>Location</th>
+                        <th>Status</th>
+                        <th>Mechanic</th>
+                        <th>ETA</th>
+                        <th>Requested On</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody id="trackTableBody">
+                      <% requests.forEach(function(req) { %>
+                        <tr data-id="<%= req._id %>">
+                          <td><%= req.serviceType %></td>
+                          <td><%= req.vehicleType %> - <%= req.vehicleNumber %></td>
+                          <td><%= req.location %></td>
+                          <td>
+                            <span class="status-badge status-<%= req.status.replace(/\s+/g, '-').toLowerCase() %>">
+                              <%= req.status %>
+                            </span>
+                          </td>
+                          <td><%= req.assignedMechanic || '-' %></td>
+                          <td><%= req.estimatedTime || '-' %></td>
+                          <td><%= new Date(req.createdAt).toLocaleString() %></td>
+                          <td>
+                            <% if (['Pending', 'Approved', 'Mechanic Assigned'].includes(req.status)) { %>
+                              <button class="btn btn-sm btn-outline-danger cancel-request-btn" data-id="<%= req._id %>">
+                                <i class="fa-solid fa-xmark"></i> Cancel
+                              </button>
+                            <% } else { %>
+                              <span class="text-muted">-</span>
+                            <% } %>
+                          </td>
+                        </tr>
+                      <% }); %>
+                    </tbody>
+                  </table>
+                </div>
+              <% } %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <%- include('partials/footer') %>
+  <%- include('partials/scripts') %>
+  <script>
+    // Handle cancel request button clicks
+    document.querySelectorAll('.cancel-request-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        const requestId = this.getAttribute('data-id');
+
+        Swal.fire({
+          title: 'Cancel this request?',
+          text: 'This action cannot be undone.',
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonText: 'Yes, cancel it',
+          confirmButtonColor: '#dc3545',
+        }).then((result) => {
+          if (result.isConfirmed) {
+            fetch(`/api/services/${requestId}/cancel`, {
+              method: 'PUT',
+              headers: { 'Content-Type': 'application/json' },
+            })
+              .then((res) => res.json())
+              .then((data) => {
+                if (data.success) {
+                  Swal.fire('Cancelled!', 'Your request has been cancelled.', 'success').then(() => {
+                    location.reload();
+                  });
+                } else {
+                  Swal.fire('Error', data.message || 'Something went wrong', 'error');
+                }
+              })
+              .catch(() => {
+                Swal.fire('Error', 'Server error. Please try again.', 'error');
+              });
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

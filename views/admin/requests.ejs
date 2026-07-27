@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../partials/head') %>
+</head>
+<body>
+  <%- include('../partials/navbar') %>
+
+  <section class="dashboard-section">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-3">
+          <%- include('../partials/sidebar', { panel: 'admin', active: 'requests' }) %>
+        </div>
+        <div class="col-lg-9">
+          <div class="dashboard-content">
+            <h3 class="mb-4"><i class="fa-solid fa-clipboard-list me-2"></i>Manage Service Requests</h3>
+
+            <div class="dashboard-card">
+              <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+                <div class="input-group" style="max-width: 300px;">
+                  <span class="input-group-text"><i class="fa-solid fa-search"></i></span>
+                  <input type="text" id="requestSearchInput" class="form-control" placeholder="Search user, vehicle...">
+                </div>
+                <select id="statusFilter" class="form-select" style="max-width: 200px;">
+                  <option value="All">All Statuses</option>
+                  <option value="Pending">Pending</option>
+                  <option value="Approved">Approved</option>
+                  <option value="Rejected">Rejected</option>
+                  <option value="Mechanic Assigned">Mechanic Assigned</option>
+                  <option value="On The Way">On The Way</option>
+                  <option value="Completed">Completed</option>
+                  <option value="Cancelled">Cancelled</option>
+                </select>
+              </div>
+
+              <div class="table-responsive">
+                <table class="table align-middle table-hover">
+                  <thead>
+                    <tr>
+                      <th>User</th>
+                      <th>Service</th>
+                      <th>Vehicle</th>
+                      <th>Location</th>
+                      <th>Status</th>
+                      <th>Mechanic</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody id="requestsTableBody">
+                    <!-- Populated via AJAX from dashboard.js -->
+                  </tbody>
+                </table>
+              </div>
+
+              <nav>
+                <ul class="pagination justify-content-center" id="requestsPagination"></ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Manage Request Modal -->
+  <div class="modal fade" id="manageRequestModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Update Request</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" id="modalRequestId">
+          <div class="mb-3">
+            <label class="form-label">Status</label>
+            <select id="modalStatus" class="form-select">
+              <option value="Pending">Pending</option>
+              <option value="Approved">Approved</option>
+              <option value="Rejected">Rejected</option>
+              <option value="Mechanic Assigned">Mechanic Assigned</option>
+              <option value="On The Way">On The Way</option>
+              <option value="Completed">Completed</option>
+              <option value="Cancelled">Cancelled</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Assigned Mechanic</label>
+            <input type="text" id="modalMechanic" class="form-control" placeholder="Mechanic name">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Estimated Time</label>
+            <input type="text" id="modalEta" class="form-control" placeholder="e.g. 30 mins">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-emergency" id="saveRequestUpdateBtn">Save Changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <%- include('../partials/footer') %>
+  <%- include('../partials/scripts') %>
+  <script src="/js/dashboard.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      if (typeof initRequestsPage === 'function') initRequestsPage();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../partials/head') %>
+</head>
+<body>
+  <%- include('../partials/navbar') %>
+
+  <section class="dashboard-section">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-3">
+          <%- include('../partials/sidebar', { panel: 'admin', active: 'dashboard' }) %>
+        </div>
+        <div class="col-lg-9">
+          <div class="dashboard-content">
+            <h3 class="mb-1">Admin Dashboard</h3>
+            <p class="text-muted mb-4">Overview of the entire RoadGuard platform.</p>
+
+            <div class="row g-4 mb-4">
+              <div class="col-md-6 col-xl-3">
+                <div class="stat-card stat-primary">
+                  <i class="fa-solid fa-users"></i>
+                  <h3><%= stats.totalUsers %></h3>
+                  <p>Total Users</p>
+                </div>
+              </div>
+              <div class="col-md-6 col-xl-3">
+                <div class="stat-card stat-info">
+                  <i class="fa-solid fa-clipboard-list"></i>
+                  <h3><%= stats.totalRequests %></h3>
+                  <p>Total Requests</p>
+                </div>
+              </div>
+              <div class="col-md-6 col-xl-3">
+                <div class="stat-card stat-warning">
+                  <i class="fa-solid fa-hourglass-half"></i>
+                  <h3><%= stats.pendingRequests %></h3>
+                  <p>Pending</p>
+                </div>
+              </div>
+              <div class="col-md-6 col-xl-3">
+                <div class="stat-card stat-success">
+                  <i class="fa-solid fa-circle-check"></i>
+                  <h3><%= stats.completedRequests %></h3>
+                  <p>Completed</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="row g-4 mb-4">
+              <div class="col-md-6">
+                <div class="stat-card stat-success">
+                  <i class="fa-solid fa-thumbs-up"></i>
+                  <h3><%= stats.approvedRequests %></h3>
+                  <p>Approved</p>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="stat-card stat-danger">
+                  <i class="fa-solid fa-thumbs-down"></i>
+                  <h3><%= stats.rejectedRequests %></h3>
+                  <p>Rejected</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="dashboard-card">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <h5 class="mb-0">Recent Requests</h5>
+                <a href="/admin/requests" class="btn btn-sm btn-outline-primary">Manage All</a>
+              </div>
+              <div class="table-responsive">
+                <table class="table align-middle">
+                  <thead><tr><th>User</th><th>Service</th><th>Location</th><th>Status</th><th>Date</th></tr></thead>
+                  <tbody>
+                    <% recentRequests.forEach(function(req) { %>
+                      <tr>
+                        <td><%= req.userId ? req.userId.name : 'Deleted User' %></td>
+                        <td><%= req.serviceType %></td>
+                        <td><%= req.location %></td>
+                        <td><span class="status-badge status-<%= req.status.replace(/\s+/g, '-').toLowerCase() %>"><%= req.status %></span></td>
+                        <td><%= new Date(req.createdAt).toLocaleDateString() %></td>
+                      </tr>
+                    <% }); %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <%- include('../partials/footer') %>
+  <%- include('../partials/scripts') %>
+</body>
+</html>

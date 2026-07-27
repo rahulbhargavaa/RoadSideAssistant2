@@ -1,0 +1,196 @@
+/* public/css/dashboard.css
+   Styling for User & Admin Dashboards, Sidebar, Stat Cards, Tables, Status Badges
+*/
+
+.dashboard-section {
+  padding: 30px 0 60px;
+  min-height: calc(100vh - 250px);
+}
+
+/* ============ SIDEBAR ============ */
+.dashboard-sidebar {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 1.8rem 1.2rem;
+  box-shadow: var(--shadow-soft);
+  position: sticky;
+  top: 90px;
+  margin-bottom: 1.5rem;
+}
+
+.sidebar-user {
+  text-align: center;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid #eef1f7;
+  margin-bottom: 1rem;
+}
+
+.sidebar-avatar {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--primary-blue);
+}
+
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-menu li a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-md);
+  color: var(--text-dark);
+  font-weight: 500;
+  margin-bottom: 4px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.sidebar-menu li a i {
+  width: 18px;
+  text-align: center;
+  color: var(--primary-blue);
+}
+
+.sidebar-menu li a:hover,
+.sidebar-menu li a.active {
+  background: linear-gradient(90deg, var(--primary-blue), var(--dark-blue));
+  color: var(--white);
+}
+
+.sidebar-menu li a:hover i,
+.sidebar-menu li a.active i {
+  color: var(--white);
+}
+
+/* ============ DASHBOARD CONTENT ============ */
+.dashboard-content {
+  padding-left: 10px;
+}
+
+.dashboard-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 1.8rem;
+  box-shadow: var(--shadow-soft);
+  margin-bottom: 1.5rem;
+}
+
+/* ============ STAT CARDS ============ */
+.stat-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 1.8rem;
+  box-shadow: var(--shadow-soft);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  border-top: 4px solid var(--primary-blue);
+}
+
+.stat-card i {
+  font-size: 1.8rem;
+  margin-bottom: 0.6rem;
+}
+
+.stat-card h3 {
+  font-weight: 800;
+  font-size: 1.9rem;
+  margin-bottom: 0.2rem;
+}
+
+.stat-card p {
+  color: var(--text-muted);
+  margin: 0;
+  font-weight: 500;
+}
+
+.stat-primary { border-top-color: var(--primary-blue); }
+.stat-primary i { color: var(--primary-blue); }
+
+.stat-warning { border-top-color: #ffc107; }
+.stat-warning i { color: #ffc107; }
+
+.stat-info { border-top-color: #0dcaf0; }
+.stat-info i { color: #0dcaf0; }
+
+.stat-success { border-top-color: #198754; }
+.stat-success i { color: #198754; }
+
+.stat-danger { border-top-color: var(--accent-red); }
+.stat-danger i { color: var(--accent-red); }
+
+/* ============ STATUS BADGES ============ */
+.status-badge {
+  padding: 5px 14px;
+  border-radius: 50px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.status-pending { background: #fff3cd; color: #856404; }
+.status-approved { background: #d1e7ff; color: #084298; }
+.status-rejected { background: #f8d7da; color: #842029; }
+.status-mechanic-assigned { background: #e2d9f3; color: #4b2e83; }
+.status-on-the-way { background: #cff4fc; color: #055160; }
+.status-completed { background: #d1e7dd; color: #0f5132; }
+.status-cancelled { background: #e2e3e5; color: #41464b; }
+
+/* ============ NOTIFICATIONS ============ */
+.notification-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 350px;
+  overflow-y: auto;
+}
+
+.notification-list li {
+  padding: 0.8rem 0;
+  border-bottom: 1px solid #eef1f7;
+}
+
+.notification-list li.unread {
+  background: rgba(13, 110, 253, 0.04);
+  border-left: 3px solid var(--primary-blue);
+  padding-left: 10px;
+}
+
+.notification-list li:last-child {
+  border-bottom: none;
+}
+
+/* ============ PROFILE PICTURE ============ */
+.profile-picture-preview {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--primary-blue);
+}
+
+/* ============ EMPTY STATE ============ */
+.empty-icon {
+  font-size: 3.5rem;
+  color: #d5deec;
+}
+
+/* ============ TABLE TWEAKS ============ */
+.table thead th {
+  color: var(--text-muted);
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  border-bottom-width: 1px;
+}
+
+.table td, .table th {
+  vertical-align: middle;
+}

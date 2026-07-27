@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('partials/head') %>
+</head>
+<body>
+  <%- include('partials/navbar') %>
+
+  <section class="dashboard-section">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-3">
+          <%- include('partials/sidebar', { panel: 'user', active: 'request' }) %>
+        </div>
+        <div class="col-lg-9">
+          <div class="dashboard-content">
+            <h3 class="mb-4"><i class="fa-solid fa-triangle-exclamation me-2 text-danger"></i>Request Roadside Assistance</h3>
+
+            <% if (error) { %>
+              <div class="alert alert-danger"><%= error %></div>
+            <% } %>
+            <% if (success) { %>
+              <div class="alert alert-success"><%= success %></div>
+            <% } %>
+
+            <div class="dashboard-card">
+              <form action="/api/services" method="POST">
+                <div class="row">
+                  <div class="col-md-6 mb-3">
+                    <label class="form-label">Service Type</label>
+                    <select name="serviceType" class="form-select" required>
+                      <option value="">-- Select Service --</option>
+                      <option value="Flat Tyre">Flat Tyre</option>
+                      <option value="Battery Jump Start">Battery Jump Start</option>
+                      <option value="Fuel Delivery">Fuel Delivery</option>
+                      <option value="Engine Problem">Engine Problem</option>
+                      <option value="Towing">Towing</option>
+                      <option value="Accident Help">Accident Help</option>
+                      <option value="Brake Issue">Brake Issue</option>
+                      <option value="Vehicle Lockout">Vehicle Lockout</option>
+                    </select>
+                  </div>
+                  <div class="col-md-6 mb-3">
+                    <label class="form-label">Vehicle Type</label>
+                    <select name="vehicleType" class="form-select" required>
+                      <option value="Car" <%= user.vehicleType === 'Car' ? 'selected' : '' %>>Car</option>
+                      <option value="Bike" <%= user.vehicleType === 'Bike' ? 'selected' : '' %>>Bike</option>
+                      <option value="Truck" <%= user.vehicleType === 'Truck' ? 'selected' : '' %>>Truck</option>
+                      <option value="Bus" <%= user.vehicleType === 'Bus' ? 'selected' : '' %>>Bus</option>
+                      <option value="Other" <%= user.vehicleType === 'Other' ? 'selected' : '' %>>Other</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6 mb-3">
+                    <label class="form-label">Vehicle Number</label>
+                    <input type="text" name="vehicleNumber" class="form-control" value="<%= user.vehicleNumber %>" placeholder="RJ14 AB 1234" required>
+                  </div>
+                  <div class="col-md-6 mb-3">
+                    <label class="form-label">Your Current Location</label>
+                    <input type="text" name="location" class="form-control" placeholder="Enter address / landmark" required>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Describe The Issue</label>
+                  <textarea name="description" class="form-control" rows="4" placeholder="Describe what happened..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-emergency w-100"><i class="fa-solid fa-paper-plane me-2"></i>Submit Request</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <%- include('partials/footer') %>
+  <%- include('partials/scripts') %>
+</body>
+</html>

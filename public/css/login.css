@@ -1,0 +1,53 @@
+/* public/css/login.css
+   Styling for Login, Register and Admin Login pages
+*/
+
+.auth-section {
+  min-height: calc(100vh - 250px);
+  display: flex;
+  align-items: center;
+  padding: 60px 0;
+  background: linear-gradient(180deg, var(--light-bg), #eaf1ff);
+}
+
+.admin-auth-section {
+  background: linear-gradient(180deg, #eef1f7, #dfe6f0);
+}
+
+.auth-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(14px);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem;
+  box-shadow: var(--shadow-soft);
+  border: 1px solid rgba(13, 110, 253, 0.08);
+}
+
+.auth-icon {
+  font-size: 3rem;
+  color: var(--primary-blue);
+}
+
+.auth-card .form-label {
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: var(--text-dark);
+}
+
+.auth-card .form-control,
+.auth-card .form-select {
+  border-radius: var(--radius-md);
+  padding: 0.7rem 1rem;
+  border: 1px solid #dde5f5;
+}
+
+.auth-card .form-control:focus,
+.auth-card .form-select:focus {
+  border-color: var(--primary-blue);
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.15);
+}
+
+.auth-card a {
+  color: var(--primary-blue);
+  font-weight: 500;
+}

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../partials/head') %>
+</head>
+<body>
+  <%- include('../partials/navbar') %>
+
+  <section class="dashboard-section">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-3">
+          <%- include('../partials/sidebar', { panel: 'user', active: 'history' }) %>
+        </div>
+        <div class="col-lg-9">
+          <div class="dashboard-content">
+            <h3 class="mb-4"><i class="fa-solid fa-clock-rotate-left me-2"></i>My Request History</h3>
+
+            <div class="dashboard-card">
+              <% if (requests.length === 0) { %>
+                <div class="text-center py-5">
+                  <i class="fa-solid fa-inbox empty-icon"></i>
+                  <p class="mt-3">No completed, rejected or cancelled requests yet.</p>
+                </div>
+              <% } else { %>
+                <div class="table-responsive">
+                  <table class="table align-middle table-hover">
+                    <thead>
+                      <tr>
+                        <th>Service</th>
+                        <th>Vehicle</th>
+                        <th>Location</th>
+                        <th>Status</th>
+                        <th>Mechanic</th>
+                        <th>Date</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% requests.forEach(function(req) { %>
+                        <tr>
+                          <td><%= req.serviceType %></td>
+                          <td><%= req.vehicleType %> - <%= req.vehicleNumber %></td>
+                          <td><%= req.location %></td>
+                          <td><span class="status-badge status-<%= req.status.replace(/\s+/g, '-').toLowerCase() %>"><%= req.status %></span></td>
+                          <td><%= req.assignedMechanic || '-' %></td>
+                          <td><%= new Date(req.createdAt).toLocaleDateString() %></td>
+                        </tr>
+                      <% }); %>
+                    </tbody>
+                  </table>
+                </div>
+              <% } %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <%- include('../partials/footer') %>
+  <%- include('../partials/scripts') %>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!-- views/partials/navbar.ejs -->
+<nav class="navbar navbar-expand-lg navbar-dark main-navbar sticky-top">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <i class="fa-solid fa-truck-medical me-2"></i>RoadGuard
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mainNav">
+      <ul class="navbar-nav ms-auto align-items-lg-center">
+        <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
+
+        <% if (typeof user !== 'undefined' && user) { %>
+          <% if (user.role === 'admin') { %>
+            <li class="nav-item"><a class="nav-link" href="/admin/dashboard"><i class="fa-solid fa-gauge me-1"></i>Admin Panel</a></li>
+          <% } else { %>
+            <li class="nav-item"><a class="nav-link" href="/user/dashboard">Dashboard</a></li>
+            <li class="nav-item"><a class="nav-link" href="/user/request-service">Request Service</a></li>
+            <li class="nav-item"><a class="nav-link" href="/user/track-request">Track Request</a></li>
+          <% } %>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown">
+              <img src="<%= user.profileImage %>" alt="profile" class="navbar-avatar me-2">
+              <%= user.name.split(' ')[0] %>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <% if (user.role !== 'admin') { %>
+                <li><a class="dropdown-item" href="/user/profile"><i class="fa-solid fa-user me-2"></i>My Profile</a></li>
+                <li><a class="dropdown-item" href="/user/history"><i class="fa-solid fa-clock-rotate-left me-2"></i>History</a></li>
+                <li><hr class="dropdown-divider"></li>
+              <% } %>
+              <li><a class="dropdown-item text-danger" href="/logout"><i class="fa-solid fa-right-from-bracket me-2"></i>Logout</a></li>
+            </ul>
+          </li>
+        <% } else { %>
+          <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
+          <li class="nav-item">
+            <a class="btn btn-emergency btn-sm ms-lg-2" href="/register">Get Started</a>
+          </li>
+        <% } %>
+      </ul>
+    </div>
+  </div>
+</nav>
